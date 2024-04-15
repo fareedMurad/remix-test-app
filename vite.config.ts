@@ -5,11 +5,11 @@ import { copyFileSync } from "node:fs";
 import { join } from "node:path";
 
 export default defineConfig({
-  base: "/remix-gh-pages/",
+  base: "/remix-test-app/",
   plugins: [
     remix({
       ssr: false,
-      basename: "/remix-gh-pages/",
+      basename: "/remix-test-app/",
       buildEnd(args) {
         if (!args.viteConfig.isProduction) return;
 
@@ -24,7 +24,7 @@ export default defineConfig({
         const buildPath = args.viteConfig.build.outDir;
         copyFileSync(
           join(buildPath, "index.html"),
-          join(buildPath, "404.html"),
+          join(buildPath, "404.html")
         );
       },
     }),
