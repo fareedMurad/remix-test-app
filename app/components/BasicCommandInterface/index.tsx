@@ -26,6 +26,17 @@ export default function BasicCommandInterface() {
     } else if (e.code === "Enter") {
       setInputValue(selectedCommand.label as string);
       setCommandPrompOpen(false);
+    } else if (
+      isCommandPromptOpen &&
+      (e.code === "KeyE" || e.code === "KeyW" || e.code === "KeyR")
+    ) {
+      const find = PROMPT_COMMANDS.find((pc) => pc.value === e.code);
+      if (find) {
+        setInputValue(find.label as string);
+        setSelectedCommand(find);
+        e.preventDefault();
+      }
+      setCommandPrompOpen(false);
     } else {
       setCommandPrompOpen(false);
     }
